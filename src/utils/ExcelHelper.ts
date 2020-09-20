@@ -1,9 +1,13 @@
-import XLSX from "xlsx";
+import XLSX, { WorkBook } from "xlsx";
 
 export interface ExcelDomain {
   items: [] | undefined;
   sheets: string[];
   workbook: XLSX.WorkBook;
+}
+
+export interface SheetDomain {
+  items: [] | undefined;
 }
 
 export class ExcelHelper {
@@ -22,6 +26,22 @@ export class ExcelHelper {
       .map(() => new Array(col).fill(""));
 
     return data;
+  };
+
+  public getSheet = (wb: WorkBook, sheetname: string, callback: any) => {
+    return new Promise(function (resolve, reject) {
+      var wsItem = wb.Sheets[sheetname];
+
+      /* Convert array of arrays */
+      var items = XLSX.utils.sheet_to_json(wsItem, { header: 1 });
+
+      var data = {
+        items: items as [] | undefined,
+      } as SheetDomain;
+
+      resolve(data);
+      return callback(null, data);
+    });
   };
 
   public convertFileToExcel = (file: Blob, callback: any) => {
