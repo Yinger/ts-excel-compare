@@ -28,7 +28,7 @@ const LeftHooks = (props: Left) => {
   return (
     <>
       <div className="left" style={{ padding: 10 }}>
-        <h1 style={{ marginLeft: 3 }}>{"<元>"}</h1>
+        <h1 style={{ marginLeft: 3 }}>{"<元・original>"}</h1>
         <ImportHooks
           sheetname={props.sheetname}
           sheetlist={props.sheetlist}
