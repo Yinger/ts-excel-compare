@@ -22,6 +22,7 @@ const DiffResultHooks = (props: DiffResult) => {
 
   return (
     <>
+      <span style={{ fontSize: 24 }}>{"比較結果"}</span>
       <HotTable
         ref={props.hotTableComponentDiffResult}
         data={[[""]]}
@@ -31,7 +32,7 @@ const DiffResultHooks = (props: DiffResult) => {
         renderer={renderDiff}
         className="diffhandsontable"
         stretchH={"all"}
-      ></HotTable>
+      />
     </>
   );
 };

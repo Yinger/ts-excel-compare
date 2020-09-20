@@ -9,15 +9,17 @@ interface DiffBtn {
 
 const DiffButtonHooks = (props: DiffBtn) => {
   return (
-    <Button
-      ref={React.createRef()}
-      id="btn-diff"
-      type="primary"
-      style={{ width: 100, marginTop: 50 }}
-      onClick={(e) => props.onDiffBtnClick(e)}
-    >
-      {props.btntext}
-    </Button>
+    <div style={{ textAlign: "center" }}>
+      <Button
+        ref={React.createRef()}
+        id="btn-diff"
+        type="primary"
+        style={{ marginTop: 150 }}
+        onClick={(e) => props.onDiffBtnClick(e)}
+      >
+        {props.btntext}
+      </Button>
+    </div>
   );
 };
 

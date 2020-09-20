@@ -19,7 +19,6 @@ function App() {
     JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
   );
   const [leftWorkbook, setLeftWorkbook] = useState<WorkBook>();
-
   const [rightsheetname, setRightSheetname] = useState("Sheet1");
   const [rightsheetlist, setRightSheetlist] = useState<any[] | null>(null);
   const [hotTableComponentRight] = useState(React.createRef());
@@ -27,8 +26,9 @@ function App() {
     JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
   );
   const [rightWorkbook, setRightWorkbook] = useState<WorkBook>();
-  const [diffBtnText] = useState("Diff");
+  const [diffBtnText] = useState(">> Diff <<");
   const [hotTableComponentDiffResult] = useState(React.createRef());
+
   const fileHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
     field: string
@@ -96,7 +96,9 @@ function App() {
     }
   };
 
-  const onDiffClick = () => {
+  const onDiffClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     diff(leftsheetdata, rightsheetdata, hotTableComponentDiffResult);
   };
 
@@ -117,7 +119,7 @@ function App() {
           <DiffButtonHooks
             btntext={diffBtnText}
             onDiffBtnClick={(e) => {
-              onDiffClick();
+              onDiffClick(e);
             }}
           />
         </Col>
@@ -131,10 +133,12 @@ function App() {
             sheetdata={rightsheetdata}
           />
         </Col>
+        <Col span={24} style={{ textAlign: "center" }}>
+          <DiffResultHooks
+            hotTableComponentDiffResult={hotTableComponentDiffResult}
+          />
+        </Col>
       </Row>
-      <DiffResultHooks
-        hotTableComponentDiffResult={hotTableComponentDiffResult}
-      />
     </div>
   );
 }
