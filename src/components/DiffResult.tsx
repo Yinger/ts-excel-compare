@@ -1,5 +1,4 @@
 import React from "react";
-// import Handsontable from "handsontable";
 import { HotTable } from "@handsontable/react";
 import { renderDiff } from "../utils/RenderDiffTable";
 
@@ -17,7 +16,6 @@ const DiffResultHooks = (props: DiffResult) => {
     contextMenu: false,
     rowHeaders: false,
     readOnly: true,
-    // stretchH: "all",
     renderAllRows: true,
     licenseKey: "non-commercial-and-evaluation",
   };
@@ -27,7 +25,7 @@ const DiffResultHooks = (props: DiffResult) => {
       <HotTable
         ref={props.hotTableComponentDiffResult}
         data={[[""]]}
-        style={{ width: "98%" }}
+        style={{ width: "100%", padding: 15 }}
         id={"tableresult"}
         settings={hotDiffResultSettings}
         renderer={renderDiff}

@@ -18,14 +18,16 @@ const LeftHooks = (props: Left) => {
   const hotLeftSettings = {
     colHeaders: true,
     rowHeaders: true,
-    height: 300,
+    height: 305,
     minRows: 5,
     minCols: 5,
+    colWidth: 100,
     licenseKey: "non-commercial-and-evaluation",
+    id: "table-left",
   };
   return (
     <>
-      <div className="left">
+      <div className="left" style={{ padding: 10 }}>
         <h1 style={{ marginLeft: 3 }}>{"<元>"}</h1>
         <ImportHooks
           sheetname={props.sheetname}
@@ -38,9 +40,9 @@ const LeftHooks = (props: Left) => {
         <HotTable
           ref={props.hotTableComponentLeft}
           data={props.sheetdata}
-          style={{ width: "98%" }}
-          id="table-left"
+          style={{ width: "100%" }}
           settings={hotLeftSettings}
+          stretchH={"all"}
         />
       </div>
     </>

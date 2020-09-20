@@ -9,7 +9,6 @@ import RightHooks from "./components/Right";
 import DiffButtonHooks from "./components/DiffBtn";
 import DiffResultHooks from "./components/DiffResult";
 import { WorkBook } from "xlsx/types";
-// import { HotTable } from "@handsontable/react";
 
 function App() {
   var excelHelper = new ExcelHelper();
@@ -17,7 +16,7 @@ function App() {
   const [leftsheetlist, setLeftSheetlist] = useState<any[] | null>(null);
   const [hotTableComponentLeft] = useState(React.createRef());
   const [leftsheetdata, setLeftSheetData] = useState(
-    JSON.parse(JSON.stringify(ExcelHelper.BlankData(11, 13)))
+    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
   );
   const [leftWorkbook, setLeftWorkbook] = useState<WorkBook>();
 
@@ -25,7 +24,7 @@ function App() {
   const [rightsheetlist, setRightSheetlist] = useState<any[] | null>(null);
   const [hotTableComponentRight] = useState(React.createRef());
   const [rightsheetdata, setRightSheetData] = useState(
-    JSON.parse(JSON.stringify(ExcelHelper.BlankData(11, 13)))
+    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
   );
   const [rightWorkbook, setRightWorkbook] = useState<WorkBook>();
   const [diffBtnText] = useState("Diff");
