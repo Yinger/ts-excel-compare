@@ -4,6 +4,8 @@ import "handsontable/dist/handsontable.full.css";
 import "./App.css";
 import { ExcelHelper, ExcelDomain, SheetDomain } from "./utils/ExcelHelper";
 import LeftHooks from "./components/Left";
+import RightHooks from "./components/Right";
+import DiffButtonHooks from "./components/DiffBtn";
 import { WorkBook } from "xlsx/types";
 
 function App() {
@@ -15,6 +17,15 @@ function App() {
     JSON.parse(JSON.stringify(ExcelHelper.BlankData(11, 13)))
   );
   const [leftWorkbook, setLeftWorkbook] = useState<WorkBook>();
+
+  const [rightsheetname, setRightSheetname] = useState("Sheet1");
+  const [rightsheetlist, setRightSheetlist] = useState<any[] | null>(null);
+  const [hotTableComponentRight] = useState(React.createRef());
+  const [rightsheetdata, setRightSheetData] = useState(
+    JSON.parse(JSON.stringify(ExcelHelper.BlankData(11, 13)))
+  );
+  const [rightWorkbook, setRightWorkbook] = useState<WorkBook>();
+  const [diffBtnText] = useState("Diff");
   const fileHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
     field: string
@@ -43,6 +54,11 @@ function App() {
                 setLeftSheetlist(sheetnames);
                 setLeftSheetData(resp.items);
                 setLeftWorkbook(resp.workbook);
+              } else {
+                setRightSheetname(resp.sheets[0]);
+                setRightSheetlist(sheetnames);
+                setRightSheetData(resp.items);
+                setRightWorkbook(resp.workbook);
               }
             }
           }
@@ -54,7 +70,7 @@ function App() {
   const onSheetFieldChange = (selectedSheetName: string, field: string) => {
     var wb = null;
     if (field === "left") wb = leftWorkbook;
-    // else wb = rightWorkbook;
+    else wb = rightWorkbook;
 
     if (wb !== undefined && wb !== null && selectedSheetName !== undefined) {
       excelHelper.getSheet(
@@ -67,6 +83,9 @@ function App() {
             if (field === "left") {
               setLeftSheetname(selectedSheetName);
               setLeftSheetData(resp.items);
+            } else {
+              setRightSheetname(selectedSheetName);
+              setRightSheetData(resp.items);
             }
           }
         }
@@ -85,6 +104,19 @@ function App() {
             onSheetSelectChange={(e) => onSheetFieldChange(e, "left")}
             hotTableComponentLeft={hotTableComponentLeft}
             sheetdata={leftsheetdata}
+          />
+        </Col>
+        <Col span={2}>
+          <DiffButtonHooks btntext={diffBtnText} onDiffBtnClick={(e) => {}} />
+        </Col>
+        <Col span={11}>
+          <RightHooks
+            sheetname={rightsheetname}
+            sheetlist={rightsheetlist}
+            onFileSelectChange={(e) => fileHandler(e, "right")}
+            onSheetSelectChange={(e) => onSheetFieldChange(e, "right")}
+            hotTableComponentRight={hotTableComponentRight}
+            sheetdata={rightsheetdata}
           />
         </Col>
       </Row>
