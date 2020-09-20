@@ -32,6 +32,7 @@ const DiffResultHooks = (props: DiffResult) => {
         settings={hotDiffResultSettings}
         renderer={renderDiff}
         className="diffhandsontable"
+        stretchH={"all"}
       ></HotTable>
     </>
   );

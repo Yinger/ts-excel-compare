@@ -9,7 +9,8 @@ class Cell {
 
   getCell(x: number, y: number) {
     let v = this.instance.getDataAtCell(y, x);
-    if (v == null) return v;
+    if (v === null) return v;
+    else if (v === undefined) return "";
     return "" + v;
   }
 
