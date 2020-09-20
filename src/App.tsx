@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Row, Col, Select } from "antd";
 import "handsontable/dist/handsontable.full.css";
-import "./App.css";
+import "./App.scss";
 import { ExcelHelper, ExcelDomain, SheetDomain } from "./utils/ExcelHelper";
+import { diff } from "./utils/Diff";
 import LeftHooks from "./components/Left";
 import RightHooks from "./components/Right";
 import DiffButtonHooks from "./components/DiffBtn";
+import DiffResultHooks from "./components/DiffResult";
 import { WorkBook } from "xlsx/types";
+// import { HotTable } from "@handsontable/react";
 
 function App() {
   var excelHelper = new ExcelHelper();
@@ -26,6 +29,7 @@ function App() {
   );
   const [rightWorkbook, setRightWorkbook] = useState<WorkBook>();
   const [diffBtnText] = useState("Diff");
+  const [hotTableComponentDiffResult] = useState(React.createRef());
   const fileHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
     field: string
@@ -93,6 +97,10 @@ function App() {
     }
   };
 
+  const onDiffClick = () => {
+    diff(leftsheetdata, rightsheetdata, hotTableComponentDiffResult);
+  };
+
   return (
     <div className="App">
       <Row>
@@ -107,7 +115,12 @@ function App() {
           />
         </Col>
         <Col span={2}>
-          <DiffButtonHooks btntext={diffBtnText} onDiffBtnClick={(e) => {}} />
+          <DiffButtonHooks
+            btntext={diffBtnText}
+            onDiffBtnClick={(e) => {
+              onDiffClick();
+            }}
+          />
         </Col>
         <Col span={11}>
           <RightHooks
@@ -120,6 +133,9 @@ function App() {
           />
         </Col>
       </Row>
+      <DiffResultHooks
+        hotTableComponentDiffResult={hotTableComponentDiffResult}
+      />
     </div>
   );
 }

@@ -1,0 +1,64 @@
+.spreadsheet-wrapper .spreadsheet {
+  overflow: auto;
+}
+
+.diffhandsontable .add {
+  background-color: #7fff7f;
+}
+.diffhandsontable .remove {
+  background-color: #ff7f7f;
+}
+.diffhandsontable td.modify {
+  background-color: #7f7fff;
+}
+.diffhandsontable td.conflict {
+  background-color: red;
+}
+.diffhandsontable .spec {
+  background-color: #aaa;
+}
+.diffhandsontable .move {
+  background-color: #ffa;
+}
+.diffhandsontable .null {
+  color: #888;
+}
+.diffhandsontable table {
+  border-collapse: collapse;
+}
+.diffhandsontable td,
+.diffhandsontable th {
+  // border: 1px solid #2d4068;
+  padding: 3px 7px 2px;
+}
+.diffhandsontable .header,
+.diffhandsontable th {
+  background-color: #aaf;
+  font-weight: 700;
+  padding-bottom: 4px;
+  padding-top: 5px;
+  text-align: left;
+}
+.diffhandsontable tr.header th {
+  border-bottom: 2px solid #000;
+}
+.diffhandsontable .gap {
+  color: #888;
+}
+.diffhandsontable td {
+  empty-cells: show;
+}
+.diffhandsontable tr:first-child td {
+  border-top: 1px solid #2d4068;
+}
+.diffhandsontable td:first-child {
+  border-left: 1px solid #2d4068;
+}
+.diffhandsontable .index,
+.diffhandsontable td.index:first-child,
+.diffhandsontable tr.header th.index,
+.diffhandsontable tr.index td,
+.diffhandsontable tr:first-child td.index {
+  background-color: #fff;
+  border: none;
+}
