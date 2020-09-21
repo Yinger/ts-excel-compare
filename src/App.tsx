@@ -99,12 +99,6 @@ function App() {
     }
   };
 
-  const onDiffClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    diff(leftsheetdata, rightsheetdata, hotTableComponentDiffResult);
-  };
-
   return (
     <div className="App">
       <Row>
@@ -122,7 +116,11 @@ function App() {
           <DiffButtonHooks
             btntext={diffBtnText}
             onDiffBtnClick={(e) => {
-              onDiffClick(e);
+              diff(leftsheetdata, rightsheetdata, hotTableComponentDiffResult);
+            }}
+            onSampleBtnClick={(e) => {
+              setLeftSheetData(ExcelHelper.SampleDataLeft);
+              setRightSheetData(ExcelHelper.SampleDataRight);
             }}
           />
         </Col>

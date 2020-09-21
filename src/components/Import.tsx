@@ -14,11 +14,11 @@ const ImportHooks = (props: Import) => {
   return (
     <Input.Group
       compact
-      style={{ marginRight: 10, marginTop: -15, marginBottom: 3 }}
+      style={{ marginRight: 10, marginTop: -25, marginBottom: 3 }}
     >
       <input
         name={"file-upload"}
-        style={{ width: "50%" }}
+        style={{ width: "50%", marginTop: 10 }}
         type="file"
         accept={ExcelHelper.SheetJSFT()}
         aria-label="Select original file"
