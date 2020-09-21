@@ -12,7 +12,10 @@ interface Import {
 
 const ImportHooks = (props: Import) => {
   return (
-    <Input.Group compact style={{ marginRight: 10, marginTop: -15 }}>
+    <Input.Group
+      compact
+      style={{ marginRight: 10, marginTop: -15, marginBottom: 3 }}
+    >
       <input
         name={"file-upload"}
         style={{ width: "50%" }}

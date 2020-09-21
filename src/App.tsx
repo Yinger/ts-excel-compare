@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import { WorkBook } from "xlsx/types";
 import { Row, Col, Select } from "antd";
-import "handsontable/dist/handsontable.full.css";
-import "./App.scss";
+
 import { ExcelHelper, ExcelDomain, SheetDomain } from "./utils/ExcelHelper";
 import { diff } from "./utils/Diff";
 import LeftHooks from "./components/Left";
 import RightHooks from "./components/Right";
 import DiffButtonHooks from "./components/DiffBtn";
 import DiffResultHooks from "./components/DiffResult";
-import { WorkBook } from "xlsx/types";
+
+import "handsontable/dist/handsontable.full.css";
+import "./App.scss";
+import "normalize.css";
 
 function App() {
   var excelHelper = new ExcelHelper();
