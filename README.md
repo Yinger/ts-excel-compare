@@ -1,6 +1,6 @@
 # Diff Tool to Compare Two Excel Spreadsheet Files
 
-- **emulate** https://www.textcompare.org/excel/
+- **Imitation** https://www.textcompare.org/excel/
 
 ## Libraries used in this Tool
 
