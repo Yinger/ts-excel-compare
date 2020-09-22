@@ -6,6 +6,7 @@ import ImportHooks from "../components/Import";
 interface Right {
   sheetname: string;
   sheetlist: any;
+  fileRef: React.RefObject<any>;
 
   sheetdata: any[][] | Handsontable.RowObject[];
   hotTableComponentRight: React.RefObject<any>;
@@ -19,9 +20,9 @@ const RightHooks = (props: Right) => {
     colHeaders: true,
     rowHeaders: true,
     height: 305,
-    minRows: 5,
-    minCols: 5,
-    colWidth: 100,
+    minRows: 12,
+    minCols: 8,
+    // colWidth: 100,
     licenseKey: "non-commercial-and-evaluation",
     id: "table-right",
   };
@@ -36,11 +37,12 @@ const RightHooks = (props: Right) => {
             props.onFileSelectChange(e)
           }
           onSheetSelectChange={(e: string) => props.onSheetSelectChange(e)}
+          fileRef={props.fileRef}
         />
         <HotTable
           ref={props.hotTableComponentRight}
           data={props.sheetdata}
-          style={{ width: "100%" }}
+          style={{ width: "98%" }}
           settings={hotRightSettings}
           stretchH={"all"}
         />

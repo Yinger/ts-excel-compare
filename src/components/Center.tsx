@@ -6,6 +6,7 @@ interface DiffBtn {
   btntext: string;
   onDiffBtnClick(e: React.MouseEvent<HTMLElement, MouseEvent>): any;
   onSampleBtnClick(e: React.MouseEvent<HTMLElement, MouseEvent>): any;
+  onResetBtnClick(e: React.MouseEvent<HTMLElement, MouseEvent>): any;
 }
 
 const CenterHooks = (props: DiffBtn) => {
@@ -28,6 +29,15 @@ const CenterHooks = (props: DiffBtn) => {
         onClick={(e) => props.onDiffBtnClick(e)}
       >
         {props.btntext}
+      </Button>
+      <Button
+        ref={React.createRef()}
+        id="btn-clean"
+        type="default"
+        style={{ marginTop: 10 }}
+        onClick={(e) => props.onResetBtnClick(e)}
+      >
+        {" << reset >> "}
       </Button>
     </div>
   );

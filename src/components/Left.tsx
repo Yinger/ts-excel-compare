@@ -6,6 +6,7 @@ import ImportHooks from "../components/Import";
 interface Left {
   sheetname: string;
   sheetlist: any;
+  fileRef: React.RefObject<any>;
 
   sheetdata: any[][] | Handsontable.RowObject[];
   hotTableComponentLeft: React.RefObject<any>;
@@ -19,9 +20,9 @@ const LeftHooks = (props: Left) => {
     colHeaders: true,
     rowHeaders: true,
     height: 305,
-    minRows: 5,
-    minCols: 5,
-    colWidth: 100,
+    minRows: 12,
+    minCols: 8,
+    // colWidth: 100,
     licenseKey: "non-commercial-and-evaluation",
     id: "table-left",
   };
@@ -36,11 +37,12 @@ const LeftHooks = (props: Left) => {
             props.onFileSelectChange(e)
           }
           onSheetSelectChange={(e: string) => props.onSheetSelectChange(e)}
+          fileRef={props.fileRef}
         />
         <HotTable
           ref={props.hotTableComponentLeft}
           data={props.sheetdata}
-          style={{ width: "100%" }}
+          style={{ width: "98%" }}
           settings={hotLeftSettings}
           stretchH={"all"}
         />

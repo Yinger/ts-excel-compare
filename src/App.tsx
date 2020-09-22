@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { WorkBook } from "xlsx/types";
 import { Row, Col, Select } from "antd";
 
@@ -19,18 +19,21 @@ function App() {
   const [leftsheetlist, setLeftSheetlist] = useState<any[] | null>(null);
   const [hotTableComponentLeft] = useState(React.createRef());
   const [leftsheetdata, setLeftSheetData] = useState(
-    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
+    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 8)))
   );
   const [leftWorkbook, setLeftWorkbook] = useState<WorkBook>();
   const [rightsheetname, setRightSheetname] = useState("Sheet1");
   const [rightsheetlist, setRightSheetlist] = useState<any[] | null>(null);
   const [hotTableComponentRight] = useState(React.createRef());
   const [rightsheetdata, setRightSheetData] = useState(
-    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 10)))
+    JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 8)))
   );
   const [rightWorkbook, setRightWorkbook] = useState<WorkBook>();
   const [diffBtnText] = useState(">> Diff <<");
   const [hotTableComponentDiffResult] = useState(React.createRef());
+
+  const leftFileSelectRef = useRef<any>(null);
+  const rightFileSelectRef = useRef<any>(null);
 
   const fileHandler = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -110,6 +113,7 @@ function App() {
             onSheetSelectChange={(e) => onSheetFieldChange(e, "left")}
             hotTableComponentLeft={hotTableComponentLeft}
             sheetdata={leftsheetdata}
+            fileRef={leftFileSelectRef}
           />
         </Col>
         <Col span={2}>
@@ -122,6 +126,21 @@ function App() {
               setLeftSheetData(ExcelHelper.SampleDataLeft);
               setRightSheetData(ExcelHelper.SampleDataRight);
             }}
+            onResetBtnClick={(e) => {
+              // window.location.reload();
+              leftFileSelectRef.current.value = "";
+              rightFileSelectRef.current.value = "";
+              setLeftSheetlist(null);
+              setRightSheetlist(null);
+              setLeftSheetname("Sheet1");
+              setRightSheetname("Sheet1");
+              setLeftSheetData(
+                JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 8)))
+              );
+              setRightSheetData(
+                JSON.parse(JSON.stringify(ExcelHelper.BlankData(12, 8)))
+              );
+            }}
           />
         </Col>
         <Col span={11}>
@@ -132,6 +151,7 @@ function App() {
             onSheetSelectChange={(e) => onSheetFieldChange(e, "right")}
             hotTableComponentRight={hotTableComponentRight}
             sheetdata={rightsheetdata}
+            fileRef={rightFileSelectRef}
           />
         </Col>
         <Col span={24} style={{ textAlign: "center" }}>
