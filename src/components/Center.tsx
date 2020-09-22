@@ -8,7 +8,7 @@ interface DiffBtn {
   onSampleBtnClick(e: React.MouseEvent<HTMLElement, MouseEvent>): any;
 }
 
-const DiffButtonHooks = (props: DiffBtn) => {
+const CenterHooks = (props: DiffBtn) => {
   return (
     <div style={{ textAlign: "center" }}>
       <Button
@@ -33,4 +33,4 @@ const DiffButtonHooks = (props: DiffBtn) => {
   );
 };
 
-export default DiffButtonHooks;
+export default CenterHooks;

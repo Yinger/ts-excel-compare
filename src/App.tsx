@@ -6,7 +6,7 @@ import { ExcelHelper, ExcelDomain, SheetDomain } from "./utils/ExcelHelper";
 import { diff } from "./utils/Diff";
 import LeftHooks from "./components/Left";
 import RightHooks from "./components/Right";
-import DiffButtonHooks from "./components/DiffBtn";
+import CenterHooks from "./components/Center";
 import DiffResultHooks from "./components/DiffResult";
 
 import "handsontable/dist/handsontable.full.css";
@@ -113,7 +113,7 @@ function App() {
           />
         </Col>
         <Col span={2}>
-          <DiffButtonHooks
+          <CenterHooks
             btntext={diffBtnText}
             onDiffBtnClick={(e) => {
               diff(leftsheetdata, rightsheetdata, hotTableComponentDiffResult);
